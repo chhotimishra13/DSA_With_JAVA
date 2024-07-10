@@ -38,7 +38,7 @@ public class ValidParenthesis {
         
     }
     public static void main(String[] args) {
-        String str = "({[]}";
+        String str = "({[]})";
 
         System.out.println(validParenthesis(str));
 
