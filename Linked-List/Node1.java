@@ -24,6 +24,46 @@ public class Node1{
         }
     }
 
+    //deletion at pos
+    static void deletionAtPos(int pos,Node head){
+        if(pos <= 0){
+            System.out.println("Invalid pos");
+        }
+        else if(pos == 1){
+            DeleteAtBeg(head);
+        }
+        else{
+            Node temp = head;
+            for(int i=1; i<pos-1; i++){
+                temp = temp.next;
+            }
+            temp.next = temp.next.next;
+        }
+    }
+    //insert at position 
+    static Node insertAtPos(int num, int pos, Node head){
+        Node newNode = new Node(num);
+        if(pos < 0){
+            System.out.println("Invalid position");
+        }
+        else if(pos == 1 || head == null){
+            newNode.next = head;
+            head = newNode;
+        }
+        else{
+            Node temp = head;
+            for(int i=1; i<pos; i++){
+                if(temp == null){
+                    System.out.println("Position beyound the list");
+                    return head;
+                }
+            }
+            newNode.next = temp.next;
+            temp.next = newNode;
+        }
+        return head;
+    }
+
     //insert at end
     static Node InsertAtEnd(int num, Node head){
         Node newNode = new Node(num);
@@ -81,7 +121,7 @@ public class Node1{
     public static void main(String[] args) {
         Node head = null;
         while(true){
-            System.out.println("1. insertAtBeg\n2.InsertAtEnd\n3.display\n0.exit\n4.DeleteAtBeg\n5.DeleteAtEnd");
+            System.out.println("1. insertAtBeg\n2.InsertAtEnd\n3.display\n0.exit\n4.DeleteAtBeg\n5.DeleteAtEnd\n6.InsertAtPos\n7.DeletionAtPos");
             Scanner s = new Scanner(System.in);
             System.out.println("Enter your choice: ");
             int choice = s.nextInt();
@@ -106,6 +146,17 @@ public class Node1{
             }
             else if(choice == 5){
                 DeleteAtEnd(head);
+            }
+            else if(choice == 6){
+                System.out.println("Enter a number into the LL: ");
+                int num = s.nextInt();
+                int pos = s.nextInt();
+                head = insertAtPos(num, pos, head);
+            }
+            else if(choice == 7){
+                System.out.println("Enter a number into the LL: ");
+                int index = s.nextInt();
+                deletionAtPos(index, head);
             }
             else if(choice == 0){
                 break;
