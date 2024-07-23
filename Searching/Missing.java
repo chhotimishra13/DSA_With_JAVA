@@ -1,57 +1,41 @@
 
+import java.util.*;
+
+
 public class Missing {
     public static void main(String[] args) {
-        int arr[] = {7, 2, 5, 3, 5, 3};
-        int brr[] = {7, 2, 5, 4, 6, 3, 5, 3};
+        Scanner s  =  new Scanner(System.in);
 
-        findMissingNumbers(arr, brr);
-    }
-
-    public static void findMissingNumbers(int[] arr, int[] brr) {
-        int xor = 0;
-        for (int num : arr) {
-            xor ^= num;
+        int n =  s.nextInt();
+        int arr[] = new int[n];
+        for (int i=0; i<n; i++) {
+            arr[i] = s.nextInt();
         }
-        for (int num : brr) {
-            xor ^= num;
+
+        int m =  s.nextInt();
+        int brr[] = new int[m];
+        for (int i=0; i<m; i++) {
+            brr[i] = s.nextInt();
         }
-        int mask = xor & -xor; 
-
-        int missing1 = 0, missing2 = 0;
-
-        // Divide elements into two groups based on the rightmost set bit (mask)
-        for (int num : arr) {
-            if ((num & mask) != 0) {
-                missing1 ^= num;
-            } else {
-                missing2 ^= num;
+        HashMap<Integer,Integer> bSet = new HashMap<Integer, Integer>();
+        for(int i=0; i<m; i++){
+            if(bSet.containsKey(brr[i])){
+                bSet.put(brr[i],bSet.get(brr[i] )+1);
             }
-        }
-        for (int num : brr) {
-            if ((num & mask) != 0) {
-                missing1 ^= num;
-            } else {
-                missing2 ^= num;
+            else{
+                bSet.put(brr[i], 1);
             }
         }
 
-        // Output the missing numbers
-        System.out.println("Missing numbers:");
-        if (isMissing(arr, missing1)) {
-            System.out.println(missing1);
-        }
-        if (isMissing(arr, missing2)) {
-            System.out.println(missing2);
-        }
-    }
-
-    // Check if the missing number is indeed missing from arr
-    private static boolean isMissing(int[] arr, int missing) {
-        for (int num : arr) {
-            if (num == missing) {
-                return false;
+        for(int i=0; i<n; i++){
+            if(bSet.containsKey(arr[i])){
+                bSet.put(arr[i],bSet.get(arr[i]) - 1);
             }
         }
-        return true;
+        for(Map.Entry<Integer,Integer> val:bSet.entrySet()){
+            if(val.getValue() > 0){
+                System.out.print(val.getKey() +" ");
+            }
+        } 
     }
 }
