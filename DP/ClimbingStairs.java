@@ -18,3 +18,27 @@ public class ClimbingStairs {
         System.out.println(countWays(n));
     }
 }
+
+
+//using memoization
+// class Solution {
+//     public int climbStair(int n, int memo[]) {
+//         if (n == 0) {
+//             return 1;
+//         }
+//         if (n < 0) {
+//             return 0;
+//         }
+
+//         if (memo[n] != 0) {
+//             return memo[n];
+//         }
+//         memo[n] = climbStair(n - 1, memo) + climbStair(n - 2, memo);
+//         return memo[n];
+//     }
+
+//     public int climbStairs(int n) {
+//         int memo[] = new int[n + 1]; 
+//         return climbStair(n, memo);  
+//     }
+// }
