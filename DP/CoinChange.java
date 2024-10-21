@@ -38,8 +38,10 @@ public class CoinChange{
         System.out.println();
     }
     public static void main(String[] args){
-        int coins[] = {1,2,3};
-        int sum = 4;
+        int coins[] = {2,5,3,6};
+        // int coins[] = {1,2,3};
+        // int sum = 4;
+        int sum = 10;
 
         System.out.println(coinChangeTabulation(coins, sum));
     }
