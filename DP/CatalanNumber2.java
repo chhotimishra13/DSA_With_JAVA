@@ -14,7 +14,7 @@ public class CatalanNumber2 {
         for(int i=0; i<=n-1; i++){
             ans += catalanMemo(i, dp) * catalanMemo(n-i-1, dp);
         }
-        return ans;
+        return dp[n] = ans;
     }
     public static void main(String[] args) {
         int n = 4;
